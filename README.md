@@ -52,13 +52,4 @@ npm start
 Visit the app at:
 👉 http://localhost:3000
 
-📂 Project Structure
-src/
-├── components/    # Reusable UI components
-├── pages/         # Application pages
-├── context/       # Global state management
-├── hooks/         # Custom React hooks
-├── services/      # API service functions
-├── utils/         # Helper and utility functions
-├── App.jsx
-└── index.js
+
