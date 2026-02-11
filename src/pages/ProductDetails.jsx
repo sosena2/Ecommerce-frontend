@@ -27,7 +27,7 @@ const ProductDetailsPage = () => {
           <img
             src={product.image}
             alt={product.name}
-            className="h-[420px] w-full rounded-xl object-contain"
+            className="h-105 w-full rounded-xl object-contain"
           />
         </Card>
 
