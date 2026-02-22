@@ -4,8 +4,10 @@ import { ArrowRight, Shield, Truck, RefreshCw, TrendingUp, Award } from 'lucide-
 import ProductGrid from '../components/products/ProductGrid';
 import { getProducts } from '../services/productService';
 import Loader from '../components/ui/Loader';
+import { useAuth } from '../context/AuthContext';
 
 const HomePage = () => {
+  const { isAuthenticated } = useAuth();
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [trendingProducts, setTrendingProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -49,16 +51,10 @@ const HomePage = () => {
             <div className="flex flex-col sm:flex-row gap-10 justify-center">
               <Link
                 to="/products"
-                className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold bg-white text-primary-600 rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
+                className="inline-flex items-center justify-center px-10 py-3 text-lg font-semibold bg-white text-primary-600 rounded-lg hover:bg-gray-100 transition-colors shadow-lg"
               >
                 Shop Now
                 <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-              <Link
-                to="/categories"
-                className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold bg-transparent border-2 border-white rounded-lg hover:bg-white/10 transition-colors"
-              >
-                Browse Categories
               </Link>
             </div>
           </div>
@@ -146,31 +142,32 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-16 bg-linear-to-br from-gray-900 to-gray-800 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Ready to Start Shopping?
-          </h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Join thousands of satisfied customers who shop with us. Create an account today and enjoy exclusive benefits!
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/register"
-              className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold bg-white text-gray-900 rounded-lg shadow-md hover:bg-gray-900 hover:text-white transition-colors"
-            >
-              Create Free Account
-            </Link>
-            <Link
-              to="/products"
-              className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold border-2 border-white/70 text-white rounded-lg hover:border-white hover:bg-white hover:text-gray-900 transition-colors"
-            >
-              Browse Products
-            </Link>
+      {!isAuthenticated && (
+        <section className="py-16 bg-linear-to-br from-gray-900 to-gray-800 text-white">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Ready to Start Shopping?
+            </h2>
+            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              Join thousands of satisfied customers who shop with us. Create an account today and enjoy exclusive benefits!
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/register"
+                className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold bg-white text-gray-900 rounded-lg shadow-md hover:bg-gray-900 hover:text-white transition-colors"
+              >
+                Create Free Account
+              </Link>
+              <Link
+                to="/products"
+                className="inline-flex items-center justify-center px-8 py-3 text-lg font-semibold border-2 border-white/70 text-white rounded-lg hover:border-white hover:bg-white hover:text-gray-900 transition-colors"
+              >
+                Browse Products
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </div>
   );
 };

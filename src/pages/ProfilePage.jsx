@@ -8,7 +8,7 @@ import Alert from '../components/ui/Alerts';
 import { toast } from 'react-hot-toast';
 
 const ProfilePage = () => {
-  const { user, updateProfile } = useAuth();
+  const { user, updateProfile, logout } = useAuth();
   const navigate = useNavigate();
   
   const [formData, setFormData] = useState({
@@ -230,7 +230,14 @@ const ProfilePage = () => {
                     />
                   </div>
 
-                  <div className="flex justify-end">
+                  <div className="flex items-center justify-between">
+                    <Button
+                      type="button"
+                      variant="danger"
+                      onClick={logout}
+                    >
+                      Logout
+                    </Button>
                     <Button
                       type="submit"
                       loading={loading}
